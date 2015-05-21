@@ -1,0 +1,14 @@
+{
+  "name": "fuck-aliyun",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Darmody/aliyun-oss-js",
+  "authors": [
+    "darmody <eterlf41@gmail.com>"
+  ],
+  "description": "javascript-SDK for aliyun OSS",
+  "main": "fuck-ali.js",
+  "license": "MIT",
+  "dependencies": {
+    "darmody-simple-ajax-uploader": ">= 1.0.0"
+  }
+}
