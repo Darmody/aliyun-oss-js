@@ -47,7 +47,8 @@
       },
       onComplete: configuration.onComplete,
       onProgress: configuration.onProgress,
-      onError: configuration.onError
+      onError: configuration.onError,
+      onSubmit: configuration.onSubmit
     });
 
     return uploader;
