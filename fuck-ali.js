@@ -24,6 +24,7 @@
     configuration.onProgress = config.onProgress;
     configuration.onError = config.onError;
     configuration.onSubmit = config.onSubmit;
+    configuration.allowedExtensions = confg.extensions;
   }
 
   fa.uploader = function(config) {
