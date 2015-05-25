@@ -37,6 +37,7 @@
       name: "file",
       cors: true,
       multipart: true,
+      allowedExtensions: configuration.allowedExtensions,
       method: "post",
       data: {
         OSSAccessKeyId: configuration.osskey,
