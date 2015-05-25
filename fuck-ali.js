@@ -6,7 +6,7 @@
 
 }(function(root, fa, ss) {
 
-  fa.VERSION = "0.0.1";
+  fa.VERSION = "0.0.2";
 
   var configuration = {
     filename: "file"
@@ -20,12 +20,13 @@
     configuration.signature = config.signature || "";
     configuration.filename = config.filename || "";
     configuration.osskey = config.osskey || "";
-    configuration.onComplete = config.onComplete || "";
-    configuration.onProgress = config.onProgress || "";
-    configuration.onError = config.onError || "";
+    configuration.onComplete = config.onComplete;
+    configuration.onProgress = config.onProgress;
+    configuration.onError = config.onError;
+    configuration.onSubmit = config.onSubmit;
   }
 
-  fa.upload = function(config) {
+  fa.uploader = function(config) {
 
     conf(config);
 
