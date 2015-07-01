@@ -6,7 +6,7 @@
 
 }(function(root, fa, ss) {
 
-  fa.VERSION = "0.0.2";
+  fa.VERSION = "0.0.3";
 
   var configuration = {
     filename: "file"
@@ -20,16 +20,24 @@
     configuration.signature = config.signature || "";
     configuration.filename = config.filename || "";
     configuration.osskey = config.osskey || "";
-    configuration.onComplete = config.onComplete;
-    configuration.onProgress = config.onProgress;
-    configuration.onError = config.onError;
-    configuration.onSubmit = config.onSubmit;
-    configuration.allowedExtensions = config.extensions;
+    configuration.onComplete = config.onComplete || function(){};
+    configuration.onProgress = config.onProgress || function(){};
+    configuration.onError = config.onError || function(){};
+    configuration.onSubmit = config.onSubmit || function(){};
+    configuration.allowedExtensions = config.extensions || function(){};
   }
 
   fa.uploader = function(config) {
 
     conf(config);
+
+    var data = {
+        OSSAccessKeyId: configuration.osskey,
+        policy: configuration.policy,
+        Signature: configuration.signature,
+        success_action_status: "201",
+        key: configuration.filename
+    };
 
     var uploader = new ss.SimpleUpload({
       button: document.getElementById(configuration.button),
@@ -39,17 +47,22 @@
       multipart: true,
       allowedExtensions: configuration.allowedExtensions,
       method: "post",
-      data: {
-        OSSAccessKeyId: configuration.osskey,
-        policy: configuration.policy,
-        Signature: configuration.signature,
-        success_action_status: "201",
-        key: configuration.filename
+      data: data,
+      onComplete: function(filename, response) {
+        extension = ss.getExt(filename);
+        filename = conf.filename + "." + extension;
+
+        configuration.onComplete.call(this, filename, response);
       },
-      onComplete: configuration.onComplete,
       onProgress: configuration.onProgress,
       onError: configuration.onError,
-      onSubmit: configuration.onSubmit
+      onSubmit: function(filename, extension) {
+        // 根据上传的文件修改文件后缀名
+        data.key = conf.filename + "." + extension;
+        this.setOptions( { data: data } )
+
+        configuration.onSubmit.call(this, filename, extension);
+      }
     });
 
     return uploader;
