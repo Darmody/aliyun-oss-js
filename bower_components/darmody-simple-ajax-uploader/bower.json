@@ -1,0 +1,11 @@
+{
+  "name": "Darmody-Simple-Ajax-Uploader",
+  "version": "1.0.0",
+  "main": "SimpleAjaxUploader.js",
+  "homepage": "https://github.com/Darmody/Simple-Ajax-Uploader",
+  "authors": [
+    "darmody <darmody@che3bao.com>"
+  ],
+  "description": "fork from Simple-Ajax-Uploader",
+  "license": "MIT"
+}
